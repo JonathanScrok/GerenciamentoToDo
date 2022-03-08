@@ -20,6 +20,7 @@ namespace ToDo.Domain.Services
         }
         #endregion
 
+        #region Metodos
         public Task<List<Tarefa>> ListTasksAsync()
         {
             return _taskRepository.ListTasksAsync();
@@ -27,20 +28,27 @@ namespace ToDo.Domain.Services
 
         public Task<bool> CreateTaskAsync(Tarefa tarefa)
         {
-            _taskRepository.CreateTaskAsync(tarefa);
-
-            throw new NotImplementedException();
+            if (tarefa != null)
+                return _taskRepository.CreateTaskAsync(tarefa);
+            else
+                return Task.FromResult(false);
         }
 
         public Task<bool> DeleteTaskAsync(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            if (tarefa != null)
+                return _taskRepository.DeleteTaskAsync(tarefa);
+            else
+                return Task.FromResult(false);
         }
-
 
         public Task<bool> UpdateTaskAsync(Tarefa tarefa)
         {
-            throw new NotImplementedException();
+            if (tarefa != null)
+                return _taskRepository.UpdateTaskAsync(tarefa);
+            else
+                return Task.FromResult(false);
         }
+        #endregion
     }
 }
