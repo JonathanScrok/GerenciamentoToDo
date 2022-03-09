@@ -19,6 +19,7 @@ namespace ToDo.Application.Mapper
         private void TarefaMap()
         {
             CreateMap<TarefaRequest, Tarefa>();
+            CreateMap<TarefaResponse, Tarefa>();
             CreateMap<Tarefa, TarefaRequest>();
             CreateMap<Tarefa, TarefaResponse>();
         }

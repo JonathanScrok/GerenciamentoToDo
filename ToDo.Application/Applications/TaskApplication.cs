@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToDo.Application.DataContract.Request.Tarefa;
+using ToDo.Application.DataContract.Response.Tarefa;
 using ToDo.Application.Interfaces;
 using ToDo.Domain.Interfaces.Services;
 using ToDo.Domain.Models;
@@ -25,14 +26,14 @@ namespace ToDo.Application.Applications
 
         #region Metodos
 
-        public async Task<List<TarefaRequest>> ListTasksAsync()
+        public async Task<List<TarefaResponse>> ListTasksAsync()
         {
-            var ListTarefaRequest = new List<TarefaRequest>();
+            var ListTarefaRequest = new List<TarefaResponse>();
             var result = await _taskService.ListTasksAsync();
 
             foreach (var tarefa in result)
             {
-                var TarefaRequest = _mappper.Map<TarefaRequest>(tarefa);
+                var TarefaRequest = _mappper.Map<TarefaResponse>(tarefa);
                 ListTarefaRequest.Add(TarefaRequest);
             }
 
@@ -45,16 +46,15 @@ namespace ToDo.Application.Applications
             return await _taskService.CreateTaskAsync(tarefaModel);
         }
 
-        public async Task<bool> DeleteTaskAsync(TarefaRequest tarefa)
+        public async Task<bool> DeleteTaskAsync(int codigo)
         {
-            var tarefaModel = _mappper.Map<Tarefa>(tarefa);
-            return await _taskService.DeleteTaskAsync(tarefaModel);
+            return await _taskService.DeleteTaskAsync(codigo);
         }
 
-        public async Task<bool> UpdateTaskAsync(TarefaRequest tarefa)
+        public async Task<bool> UpdateTaskAsync(int codigo, TarefaRequest tarefa)
         {
             var tarefaModel = _mappper.Map<Tarefa>(tarefa);
-            return await _taskService.UpdateTaskAsync(tarefaModel);
+            return await _taskService.UpdateTaskAsync(codigo, tarefaModel);
         }
 
         #endregion

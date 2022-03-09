@@ -11,7 +11,7 @@ namespace ToDo.Domain.Interfaces.Services
     {
         Task<List<Tarefa>> ListTasksAsync();
         Task<bool> CreateTaskAsync(Tarefa tarefa);
-        Task<bool> UpdateTaskAsync(Tarefa tarefa);
-        Task<bool> DeleteTaskAsync(Tarefa tarefa);
+        Task<bool> UpdateTaskAsync(int codigo, Tarefa tarefa);
+        Task<bool> DeleteTaskAsync(int codigo);
     }
 }

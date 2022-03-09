@@ -36,18 +36,18 @@ namespace ToDo.Domain.Services
                 return Task.FromResult(false);
         }
 
-        public Task<bool> DeleteTaskAsync(Tarefa tarefa)
+        public Task<bool> DeleteTaskAsync(int codigo)
         {
-            if (tarefa != null)
-                return _taskRepository.DeleteTaskAsync(tarefa);
+            if (codigo > 0)
+                return _taskRepository.DeleteTaskAsync(codigo);
             else
                 return Task.FromResult(false);
         }
 
-        public Task<bool> UpdateTaskAsync(Tarefa tarefa)
+        public Task<bool> UpdateTaskAsync(int codigo, Tarefa tarefa)
         {
             if (tarefa != null)
-                return _taskRepository.UpdateTaskAsync(tarefa);
+                return _taskRepository.UpdateTaskAsync(codigo, tarefa);
             else
                 return Task.FromResult(false);
         }

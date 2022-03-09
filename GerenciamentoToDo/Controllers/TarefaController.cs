@@ -1,8 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using ToDo.Application.DataContract.Request.Tarefa;
 using ToDo.Application.Interfaces;
@@ -43,13 +39,12 @@ namespace ToDo.API.Controllers
         #region Adicionar tarefa
         // POST: TarefaController/AdicionarTarefa
         [HttpPost("adicionar-tarefa")]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> AdicionarTarefa([FromBody] TarefaRequest tarefa)
         {
             var result = await _taskApplication.CreateTaskAsync(tarefa);
 
             if (result)
-                return Ok(true);
+                return Ok("Tarefa criada com sucesso!");
             else
                 return BadRequest("Erro ao criar a tarefa!");
 
@@ -58,14 +53,13 @@ namespace ToDo.API.Controllers
 
         #region Alterar Tarefa
         // PUT: TarefaController/AlterarTarefa
-        [HttpPut("alterar-tarefa")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> AlterarTarefa([FromBody] TarefaRequest tarefa)
+        [HttpPut("alterar-tarefa/{codigo}")]
+        public async Task<ActionResult> AlterarTarefa(int codigo, [FromBody] TarefaRequest tarefa)
         {
-            var result = await _taskApplication.UpdateTaskAsync(tarefa);
+            var result = await _taskApplication.UpdateTaskAsync(codigo, tarefa);
 
             if (result)
-                return Ok(true);
+                return Ok("Tarefa alterada com sucesso!");
             else
                 return BadRequest("Erro ao alterar a tarefa!");
         }
@@ -73,14 +67,13 @@ namespace ToDo.API.Controllers
 
         #region Deletar Tarefa
         // DELETE: TarefaController/DeletarTarefa
-        [HttpDelete("deletar-tarefa")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeletarTarefa([FromBody] TarefaRequest tarefa)
+        [HttpDelete("deletar-tarefa/{codigo}")]
+        public async Task<ActionResult> DeletarTarefa(int codigo)
         {
-            var result = await _taskApplication.DeleteTaskAsync(tarefa);
+            var result = await _taskApplication.DeleteTaskAsync(codigo);
 
             if (result)
-                return Ok(true);
+                return Ok("Tarefa deletada com sucesso!");
             else
                 return BadRequest("Erro ao deletar a tarefa!");
         }

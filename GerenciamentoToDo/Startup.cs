@@ -1,10 +1,18 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using ToDo.Application.Applications;
+using ToDo.Application.Interfaces;
 using ToDo.Application.Mapper;
+using ToDo.Domain.Interfaces.Repositories;
+using ToDo.Domain.Interfaces.Services;
+using ToDo.Domain.Services;
+using ToDo.Infra.Database;
+using ToDo.Infra.SqLite.Repositories;
 
 namespace GerenciamentoToDo
 {
@@ -22,6 +30,10 @@ namespace GerenciamentoToDo
         {
             services.AddAutoMapper(typeof(Core));
             services.AddControllers();
+            services.AddDbContext<DatabaseContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<ITaskApplication, TaskApplication>();
+            services.AddScoped<ITaskService, TaskService>();
+            services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "GerenciamentoToDo", Version = "v1" });
