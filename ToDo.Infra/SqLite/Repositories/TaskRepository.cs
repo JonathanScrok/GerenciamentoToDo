@@ -27,7 +27,7 @@ namespace ToDo.Infra.SqLite.Repositories
         #region Lista todas Tarefas
         public async Task<List<Tarefa>> ListTasksAsync()
         {
-            return await _db.Tarefas.ToListAsync();
+            return await _db.Tarefas.ToListAsync(); //Lista todas as Tarefas do banco SqLite
         }
         #endregion
 
@@ -37,13 +37,12 @@ namespace ToDo.Infra.SqLite.Repositories
             try
             {
                 Random randNum = new Random();
-                int codigo = randNum.Next();
 
-                tarefa.Codigo = codigo;
+                tarefa.Codigo = randNum.Next(); //Gera o Código público da tarefa aleatóriamente
                 tarefa.DataCriacao = DateTime.Now;
 
-                await _db.Tarefas.AddAsync(tarefa);
-                await _db.SaveChangesAsync();
+                await _db.Tarefas.AddAsync(tarefa); //Adiciona a nova tarefa ao banco SqLite
+                await _db.SaveChangesAsync(); //Salva as alteraçoes 
 
                 return true;
             }
@@ -59,13 +58,13 @@ namespace ToDo.Infra.SqLite.Repositories
         {
             try
             {
-                var todasTarefas = _db.Tarefas.ToList();
-                Tarefa tarefa = todasTarefas.Where(a => a.Codigo == codigo).FirstOrDefault();
+                var todasTarefas = _db.Tarefas.ToList(); //Lista todas as Tarefas do banco SqLite
+                Tarefa tarefa = todasTarefas.Where(a => a.Codigo == codigo).FirstOrDefault(); //Busca pelo codigo publico no banco
 
                 if (tarefa != null)
                 {
-                    _db.Tarefas.Remove(tarefa);
-                    await _db.SaveChangesAsync();
+                    _db.Tarefas.Remove(tarefa); //Remove a tarefa do banco
+                    await _db.SaveChangesAsync(); //Salva as alteraçoes 
 
                     return true;
                 }
@@ -87,8 +86,8 @@ namespace ToDo.Infra.SqLite.Repositories
         {
             try
             {
-                var todasTarefas = _db.Tarefas.ToList();
-                Tarefa tarefaCompleta = todasTarefas.Where(a => a.Codigo == codigo).FirstOrDefault();
+                var todasTarefas = _db.Tarefas.ToList(); ////Lista todas as Tarefas do banco SqLite
+                Tarefa tarefaCompleta = todasTarefas.Where(a => a.Codigo == codigo).FirstOrDefault(); //Busca pelo codigo publico no banco
 
                 if (tarefa != null)
                 {
@@ -96,8 +95,8 @@ namespace ToDo.Infra.SqLite.Repositories
                     tarefaCompleta.Titulo = tarefa.Titulo;
                     tarefaCompleta.DataTarefa = tarefa.DataTarefa;
 
-                    _db.Tarefas.Update(tarefaCompleta);
-                    await _db.SaveChangesAsync();
+                    _db.Tarefas.Update(tarefaCompleta); //Atualiza as alteraçoes da tarefa 
+                    await _db.SaveChangesAsync(); //Salva as alteraçoes 
 
                     return true;
                 }

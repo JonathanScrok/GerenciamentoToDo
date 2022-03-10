@@ -21,9 +21,12 @@ namespace ToDo.API.Controllers
         #endregion
 
         #region Metodos
-        
+
         #region Listar todas tarefas
         // GET: TarefaController/ListarTarefas
+        /// <summary>
+        /// Lista todas as tarefas
+        /// </summary>
         [HttpGet("listar-tarefas")]
         public async Task<ActionResult> ListarTarefas()
         {
@@ -38,6 +41,9 @@ namespace ToDo.API.Controllers
 
         #region Adicionar tarefa
         // POST: TarefaController/AdicionarTarefa
+        /// <summary>
+        /// Adiciona uma nova tarefa
+        /// </summary>
         [HttpPost("adicionar-tarefa")]
         public async Task<ActionResult> AdicionarTarefa([FromBody] TarefaRequest tarefa)
         {
@@ -53,6 +59,9 @@ namespace ToDo.API.Controllers
 
         #region Alterar Tarefa
         // PUT: TarefaController/AlterarTarefa
+        /// <summary>
+        /// Altera uma tarefa existente
+        /// </summary>
         [HttpPut("alterar-tarefa/{codigo}")]
         public async Task<ActionResult> AlterarTarefa(int codigo, [FromBody] TarefaRequest tarefa)
         {
@@ -67,6 +76,9 @@ namespace ToDo.API.Controllers
 
         #region Deletar Tarefa
         // DELETE: TarefaController/DeletarTarefa
+        /// <summary>
+        /// Deleta uma tarefa existente
+        /// </summary>
         [HttpDelete("deletar-tarefa/{codigo}")]
         public async Task<ActionResult> DeletarTarefa(int codigo)
         {

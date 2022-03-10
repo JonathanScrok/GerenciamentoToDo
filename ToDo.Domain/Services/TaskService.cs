@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using ToDo.Domain.Interfaces.Repositories;
 using ToDo.Domain.Interfaces.Services;
@@ -23,11 +20,15 @@ namespace ToDo.Domain.Services
         #endregion
 
         #region Metodos
+
+        #region Lista todas Tarefas
         public Task<List<Tarefa>> ListTasksAsync()
         {
             return _taskRepository.ListTasksAsync();
         }
+        #endregion
 
+        #region Cria uma tarefa
         public Task<bool> CreateTaskAsync(Tarefa tarefa)
         {
             if (tarefa != null)
@@ -35,7 +36,9 @@ namespace ToDo.Domain.Services
             else
                 return Task.FromResult(false);
         }
+        #endregion
 
+        #region Deleta uma tarefa
         public Task<bool> DeleteTaskAsync(int codigo)
         {
             if (codigo > 0)
@@ -43,7 +46,9 @@ namespace ToDo.Domain.Services
             else
                 return Task.FromResult(false);
         }
+        #endregion
 
+        #region Atualiza uma tarefa
         public Task<bool> UpdateTaskAsync(int codigo, Tarefa tarefa)
         {
             if (tarefa != null)
@@ -51,6 +56,8 @@ namespace ToDo.Domain.Services
             else
                 return Task.FromResult(false);
         }
+        #endregion
+
         #endregion
     }
 }

@@ -26,36 +26,44 @@ namespace ToDo.Application.Applications
 
         #region Metodos
 
+        #region Lista todas Tarefas
         public async Task<List<TarefaResponse>> ListTasksAsync()
         {
             var ListTarefaRequest = new List<TarefaResponse>();
-            var result = await _taskService.ListTasksAsync();
+            var result = await _taskService.ListTasksAsync(); //Lista todas as tarefas
 
             foreach (var tarefa in result)
             {
-                var TarefaRequest = _mappper.Map<TarefaResponse>(tarefa);
+                var TarefaRequest = _mappper.Map<TarefaResponse>(tarefa); //Cada tarefa será mapeada para 'TarefaResponse' onde só aparecerá os dados publicos
                 ListTarefaRequest.Add(TarefaRequest);
             }
 
             return ListTarefaRequest;
         }
+        #endregion
 
+        #region Cria uma tarefa
         public async Task<bool> CreateTaskAsync(TarefaRequest tarefa)
         {
             var tarefaModel = _mappper.Map<Tarefa>(tarefa);
             return await _taskService.CreateTaskAsync(tarefaModel);
         }
+        #endregion
 
+        #region Deleta uma tarefa
         public async Task<bool> DeleteTaskAsync(int codigo)
         {
             return await _taskService.DeleteTaskAsync(codigo);
         }
+        #endregion
 
+        #region Atualiza uma tarefa
         public async Task<bool> UpdateTaskAsync(int codigo, TarefaRequest tarefa)
         {
             var tarefaModel = _mappper.Map<Tarefa>(tarefa);
             return await _taskService.UpdateTaskAsync(codigo, tarefaModel);
         }
+        #endregion
 
         #endregion
     }
