@@ -14,6 +14,10 @@ Para começar a usar a API, será necessário setar o projeto ToDo.API para inic
 
 Feito isto basta iniciar a aplicação!
 
+A API possui Swagger então cada EndPoint está devidamente Documentado:
+![image](https://user-images.githubusercontent.com/74919534/157568316-f9cbb54b-2ba1-441d-9382-a4552d4b0191.png)
+
+
 ## Banco de dados
 O Banco de dados(SQLite) será criado automaticamente após acessar qualquer EndPoint da aplicação, dentro da pasta "bank" um arquivo .db do banco de dados será criado a partir dos atributos da model colocada na pasta de models.
 
