@@ -10,11 +10,13 @@ Com esta ferramenta é possível listar, criar, alterar e excluir tarefas.
 ## Configurando ambiente
 
 Para começar a usar a API, será necessário setar o projeto ToDo.API para iniciar(Caso iniciado no Visual Studio), como a imagem:
+
 ![image](https://user-images.githubusercontent.com/74919534/157563466-4c1b88f5-fa9b-4872-a994-c4880cbde8b3.png)
 
 Feito isto basta iniciar a aplicação!
 
 A API possui Swagger então cada EndPoint está devidamente Documentado:
+
 ![image](https://user-images.githubusercontent.com/74919534/157568316-f9cbb54b-2ba1-441d-9382-a4552d4b0191.png)
 
 
