@@ -5,6 +5,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using System;
+using System.IO;
+using System.Reflection;
 using ToDo.Application.Applications;
 using ToDo.Application.Interfaces;
 using ToDo.Application.Mapper;
@@ -36,7 +39,10 @@ namespace GerenciamentoToDo
             services.AddScoped<ITaskRepository, TaskRepository>();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GerenciamentoToDo", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Gerenciamento TODO", Version = "v1" });
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
             });
         }
 
@@ -47,7 +53,7 @@ namespace GerenciamentoToDo
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GerenciamentoToDo v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo.API v1"));
             }
 
             app.UseHttpsRedirection();
