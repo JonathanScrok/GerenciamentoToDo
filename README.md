@@ -8,6 +8,7 @@ Com esta ferramenta é possível listar, criar, alterar e excluir tarefas.
 
 
 ## Configurando ambiente
+Necessário - SDK 5.0
 
 Para começar a usar a API, será necessário setar o projeto ToDo.API para iniciar(Caso iniciado no Visual Studio), como a imagem:
 
@@ -21,7 +22,7 @@ A API possui Swagger então cada EndPoint está devidamente Documentado:
 
 
 ## Banco de dados
-O Banco de dados(SQLite) será criado automaticamente após acessar qualquer EndPoint da aplicação, dentro da pasta "bank" um arquivo .db do banco de dados será criado a partir dos atributos da model colocada na pasta de models.
+O Banco de dados(SQLite) será criado automaticamente após acessar qualquer EndPoint da aplicação, dentro da pasta "Bank" um arquivo .db do banco de dados será criado a partir dos atributos da model colocada na pasta de models.
 
 ## Opções da API
 
